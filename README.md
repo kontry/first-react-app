@@ -1,3 +1,9 @@
+## Hi Michael
+
+THis is my first React App. Just learning how to do it. 🙈
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
