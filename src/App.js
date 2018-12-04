@@ -7,7 +7,6 @@ import Cities from "./components/Cities"
 
 const API_KEY = "106845c153dc17d19bec87962cbd6641"
 const TIME_API_KEY = "4ORD4ZLPREA8"
-// Alternative: TIME_API_KEY = "VQHJV5LVKY99"
 
 class App extends React.Component {
   state = {
@@ -25,10 +24,7 @@ class App extends React.Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${API_KEY}&units=imperial`);
-    const time_api_call = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${TIME_API_KEY}&format=json&by=position&lng=104.06&lat=30.68`)
     const data = await api_call.json();
-    const time_data = await time_api_call.json();
-    console.log(time_data);
 
     if (city && country) {
       this.setState({
@@ -41,6 +37,7 @@ class App extends React.Component {
         latitude: data.coord.lat,
         error: ""
       });
+      this.getTime();
     } else {
         this.setState({
         temperature: undefined,
@@ -50,9 +47,17 @@ class App extends React.Component {
         description: undefined,
         longitute: undefined,
         latitude: undefined,
-        error: "Please enter values for both city and country."
+        error: "Please enter values above"
       });
     }
+  }
+
+  getTime = async (e) => {
+    const time_api_call = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${TIME_API_KEY}&format=json&by=position&lng=${this.state.longitute}&lat=${this.state.latitude}`);
+    const time_data = await time_api_call.json();
+    this.setState({
+      time: time_data.formatted
+    });
   }
 
   render() {
@@ -68,6 +73,7 @@ class App extends React.Component {
                 <div className="col-xs-7 form-container">
                   <Form getWeather={this.getWeather}/>
                   <Weather
+                    time={this.state.time}
                     temperature={this.state.temperature}
                     city={this.state.city}
                     country={this.state.country}

@@ -3,8 +3,8 @@ import React from "react";
 const Weather = props => (
   <div className="weather__info">
     {
-      props.latitude && <p className="weather__key">Time:
-        <span className="weather__value"> { props.latitude }</span>
+      props.time && <p className="weather__key">Time:
+        <span className="weather__value"> { props.time }</span>
       </p>
     }
     {
@@ -20,6 +20,7 @@ const Weather = props => (
     {
       props.description && <p className="weather__key">Conditions:
         <span className="weather__value"> { props.description }</span>
+        <br/>
       </p>
     }
     {
