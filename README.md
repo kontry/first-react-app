@@ -1,6 +1,6 @@
-## Hi Michael
+## Hi there
 
-THis is my first React App. Just learning how to do it. 🙈
+This is my first React App. Just learning how to do it. 🙈
 
 
 
