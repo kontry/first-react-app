@@ -1,3 +1,5 @@
+/* Loading fonts in CSS file are OK but you should keep in mind these files will load sequentially.
+   It is better that load fonts in html if you should consider the performance. It will load parallel. */
 @import url('https://fonts.googleapis.com/css?family=Merriweather:100,200,300,300i,400,400i,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
@@ -10,7 +12,7 @@ body {
 .wrapper {
   background: linear-gradient(to right, #7a67e9, #a619b7);
   height: 100vh;
-  display: flex;
+  display: flex; /* good to use flex! */
   justify-content: center;
   align-items: center;
 }
@@ -29,7 +31,10 @@ body {
 
 .title-container {
   height: 90vh;
-  background: url("img/shenzhen.jpg") center center;
+  /* image url is implicit. using absolute path "/img/…" or relative path "./img/…"
+    Absolute path is better in most of case.
+  */
+  background: url("./img/shenzhen.jpg") center center;
   background-size: cover;
   display: flex;
   align-items: top;
@@ -38,7 +43,7 @@ body {
   color: #000;
 }
 
-.title-container__title {
+.title-container__title { /* BEM style! Great! */
   font-size: 40px;
   letter-spacing: 2.5px;
   line-height: 1.3;
@@ -61,14 +66,14 @@ body {
   padding-left: 50px;
 }
 
-input[type="text"] {
+input[type="text"] { /* selecting by attribute is a good css technique! */
   background-color: transparent;
   border: 0;
   border-bottom: solid 1px #b500bf;
   width: 30%;
   padding-bottom: 4px;
-  color: #fff !important;
-  font-weight: lighter;
+  color: #fff !important; /* "!important" should be chosen last, you know. */
+  font-weight: lighter; /* keep consistence with other css. And 100 or 200 is more better, in my opinion. */
   letter-spacing: 2px;
   margin-bottom: 30px;
   margin-right: 20px;

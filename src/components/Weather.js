@@ -1,34 +1,34 @@
 import React from "react";
+import {string as propString, number as propNumber} from 'prop-types' // you can define libs as different name
 
-const Weather = props => (
+const Weather = ({time, temperature, humidity, description, error}) => (
   <div className="weather__info">
-    {
-      props.time && <p className="weather__key">Time:
-        <span className="weather__value"> { props.time }</span>
-      </p>
-    }
-    {
-      props.temperature && <p className="weather__key">Temperature:
-        <span className="weather__value"> { props.temperature }</span>
-      </p>
-    }
-    {
-      props.humidity && <p className="weather__key">Humidity:
-        <span className="weather__value"> { props.humidity }</span>
-      </p>
-    }
-    {
-      props.description && <p className="weather__key">Conditions:
-        <span className="weather__value"> { props.description }</span>
-        <br/>
-      </p>
-    }
-    {
-      props.error && <p className="weather__key">
-        <span className="weather__error">{ props.error }</span>
-      </p>
-    }
+    <p className="weather__key">Time:
+      <span className="weather__value"> { time }</span>
+    </p>
+    <p className="weather__key">Temperature:
+      <span className="weather__value"> { temperature }</span>
+    </p>
+    <p className="weather__key">Humidity:
+      <span className="weather__value"> { humidity }</span>
+    </p>
+    <p className="weather__key">Conditions:
+      <span className="weather__value"> { description }</span>
+      <br/>
+    </p>
+    <p className="weather__key">
+      <span className="weather__error">{ error }</span>
+    </p>
   </div>
-);
+)
 
-export default Weather;
+// add prop types
+Weather.propTypes = {
+  time: propString,
+  temperature: propNumber,
+  humidity: propNumber,
+  description: propString,
+  error: propString,
+}
+
+export default Weather
